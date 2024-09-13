@@ -1,0 +1,243 @@
+.header {
+  &-inner {
+
+    &.active {
+      .header-menu {
+        display: block;
+        position: fixed;
+        height: 100%;
+        width: 80%;
+        top: 0;
+        background: #fff;
+        left: 0;
+      }
+    }
+  }
+
+  &.header-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    z-index: 9999;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  &-logo {
+    width: 70px;
+    flex: none;
+    padding: 10px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-menu {
+    @media screen and (max-width: 750px) {
+      display: none;
+      transition: .3s ease;
+    }
+
+    li {
+      display: inline-block;
+      position: relative;
+      list-style-type: none;
+      font-size: 13px;
+      font-weight: 600;
+
+      @media screen and (max-width: 767px) {
+        display: block;
+      }
+
+      &.has-sub {
+
+        i {
+          display: none;
+
+          @media screen and (max-width: 767px) {
+            display: block;
+            position: absolute;
+            right: 0;
+            font-size: 25px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+
+      &.current-menu-item {
+        &>a {
+          color: $color-main;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      &.current-menu-parent {
+        &>a {
+          color: $color-main;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      .sub-menu {
+        position: absolute;
+        width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s ease;
+        background: $color-white;
+        padding: 15px;
+
+        li {
+          width: 100%;
+
+          &:not(:last-child) {
+            padding-bottom: 15px;
+          }
+
+          a {
+            padding: 0;
+            height: auto;
+            margin: 0;
+            display: block;
+
+            &:hover {
+              &::after {
+                display: none;
+              }
+            }
+          }
+        }
+
+        &.active {
+          opacity: 1 !important;
+          visibility: visible !important;
+          position: relative;
+        }
+      }
+
+
+
+      &:hover {
+        .sub-menu {
+          opacity: 1;
+          visibility: visible;
+
+          @media screen and (max-width: 767px) {
+            opacity: 0;
+            visibility: hidden;
+          }
+
+          a {
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+
+      a {
+        color: $color-black;
+        margin: 0 20px;
+        position: relative;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+
+        @media screen and (max-width: 850px) {
+          padding: 0;
+          height: 40px;
+          margin: 0 10px;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 3px;
+          background: $color-main;
+          bottom: 0;
+          -webkit-transition: .3s;
+          -moz-transition: .3s;
+          -ms-transition: .3s;
+          -o-transition: .3s;
+          transition: .3s;
+
+          @media screen and (max-width: 850px) {
+            display: none
+          }
+        }
+
+        &:hover {
+          color: $color-main;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      &.lang-item {
+        a {
+          margin: 0 5px;
+
+          @media screen and (max-width: 850px) {
+            margin: 0 20px;
+          }
+
+          &:hover {
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-navbar {
+    display: none;
+
+    @media screen and (max-width: 750px) {
+      display: block;
+    }
+
+    .close {
+      display: none;
+    }
+
+    &.active {
+      .close {
+        display: block;
+      }
+
+      .open {
+        display: none;
+      }
+    }
+
+    i {
+      font-size: 31px;
+      position: absolute;
+      top: 20%;
+      right: 4%;
+    }
+  }
+}
